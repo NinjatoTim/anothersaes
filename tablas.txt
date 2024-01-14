@@ -1,0 +1,86 @@
+create table persona (
+  id_persona int NOT NULL auto_increment primary key,
+  aPaterno VARCHAR(100),
+  aMaterno VARCHAR(100),
+  nombre VARCHAR(100),
+  genero CHAR(1),
+  fecha_na DATE,
+  contrasenia varchar(100),
+  rol varchar(100)
+);
+
+create table alumno(
+  boleta int NOT NULL primary key,
+  id_persona int,
+  estatus varchar(100),
+  FOREIGN KEY (id_persona) REFERENCES persona(id_persona) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+create table docente(
+  num_empleado int NOT NULL primary key,
+  id_persona int,
+  cédula varchar(10),
+  especialidad varchar(100),
+  grado_academico varchar(100),
+  estatus varchar(100),
+  FOREIGN KEY (id_persona) REFERENCES persona(id_persona) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+create table curso(
+  id_curso int NOT NULL auto_increment primary key,
+  nombre varchar(100),
+  créditos int,
+  precio int
+);
+
+create table grupo(
+  id_grupo varchar(100) NOT NULL primary key,
+  num_empleado int,
+  boleta int,
+  id_curso int,
+  FOREIGN KEY (boleta) REFERENCES alumno(boleta) ON UPDATE CASCADE,
+  FOREIGN KEY (num_empleado) REFERENCES docente(num_empleado) ON UPDATE CASCADE ON DELETE CASCADE,
+  FOREIGN KEY (id_curso) REFERENCES curso(id_curso) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+create table asignacion(  
+  id_asignacion int NOT NULL auto_increment primary key,
+  id_grupo varchar(100),
+  tipo varchar(100), 
+  url varchar(255),
+  FOREIGN KEY (id_grupo) REFERENCES grupo(id_grupo) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+create table asignacion_alumno(
+  id_asignacion_alumno int NOT NULL auto_increment primary key,
+  id_asignacion int,
+  boleta int,
+  calificacion int,
+  url varchar(255),  
+  FOREIGN KEY (boleta) REFERENCES alumno(boleta) ON UPDATE CASCADE ON DELETE CASCADE,
+  FOREIGN KEY (id_asignacion) REFERENCES asignacion(id_asignacion) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+create table detalle_pago(
+  id_pago int NOT NULL auto_increment primary key,
+  boleta int,
+  id_curso int,
+  comprobante_url varchar(100),
+  FOREIGN KEY (boleta) REFERENCES alumno(boleta) ON UPDATE CASCADE ON DELETE CASCADE,
+  FOREIGN KEY (id_curso) REFERENCES curso(id_curso) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+create table horario(
+  id_horario int NOT NULL auto_increment primary key,
+  id_grupo varchar(100),
+  dia_semana varchar(20),
+  hora_inicio time,
+  hora_fin time,
+  FOREIGN KEY (id_grupo) REFERENCES grupo(id_grupo) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+
+
+

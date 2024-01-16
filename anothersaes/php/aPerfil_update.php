@@ -1,5 +1,13 @@
 <?php include '../template/aheader.php' ?>
-
+<?php
+    include_once "../model/conexion.php";
+    $alumno = $_SESSION['usuario'];
+    $sentencia = $bd -> query("SELECT *
+        FROM persona
+        INNER JOIN alumno ON persona.id_persona = alumno.id_persona
+        WHERE alumno.boleta = $alumno;");
+    $persona = $sentencia->fetchAll(PDO::FETCH_OBJ);
+?>
 <div class="container mt-5 ">
     <div class="row justify-content-center">
         <div class="col-md-11">
@@ -9,32 +17,34 @@
             <br>
             <h3 class="text-center">Información personal</h3>
             <div class="card">
-                <form action="php/registrar.php" class="p-2" method="post" >
+            <?php 
+                foreach($persona as $dato){ 
+            ?>
+                <form action="aPerfilProceso_update.php" class="p-2" method="POST" >
                     <div class="container">
                         <div class="row">
                             <div class="col">
                                 <div class="mb-1">
                                     <label for="form-label" class="col-lg-5" >Boleta: </label>
-                                    <input type="text" class="form-control col-lg-5" placeholder="Boleta" name="l_boleta" autofocus required>
+                                    <input type="text" class="form-control col-lg-5" value="<?php echo $dato->boleta; ?>" placeholder="Boleta" name="l_boleta" autofocus required>
                                 </div>
                                 <div class="mb-1">
                                     <label for="form-label">Apellido Paterno: </label>
-                                    <input type="text" class="form-control" name="l_aPaterno" placeholder="Apellido Paterno" required autofocus>
+                                    <input type="text" class="form-control" name="l_aPaterno" value="<?php echo $dato->aPaterno; ?>"placeholder="Apellido Paterno" required autofocus>
                                 </div>
                                 <div class="mb-1">
                                     <label for="form-label">Apellido Materno: </label>
-                                    <input type="text" class="form-control" name="l_aMaterno" placeholder="Apellido Materno" required autofocus>
+                                    <input type="text" class="form-control" name="l_aMaterno" value="<?php echo $dato->aMaterno; ?>" placeholder="Apellido Materno" required autofocus>
                                 </div>
                                 <div class="mb-1">
                                     <label for="form-label">Nombre: </label>
-                                    <input type="text" class="form-control" name="l_nombre" placeholder="Nombre" required autofocus>
+                                    <input type="text" class="form-control" name="l_nombre" value="<?php echo $dato->nombre; ?>" placeholder="Nombre" required autofocus>
                                 </div>
                             </div>
                             <div class="col">
                                 <div class="mb-1">
                                     <label class="form-label">Género: </label>
-                                    <select class="form-select" name="l_genero" id="l_funcion">
-                                        <option selected>Genero</option>    
+                                    <select class="form-select" name="l_genero" id="l_funcion" value="<?php echo $dato->genero; ?>">
                                         <option value="M">Masculino</option>
                                         <option value="F">Femenino</option>
                                         <option value="O">Otro</option>
@@ -42,11 +52,11 @@
                                 </div>
                                 <div class="mb-2">
                                     <label for="form-reg">Fecha Nacimiento: </label>
-                                    <input type="date" class="form-control" name="l_fechaNa" autofocus>
+                                    <input type="date" class="form-control" name="l_fechaNa" autofocus value="<?php echo $dato->fecha_na; ?>">
                                 </div>
                                 <div class="mb-2">
                                     <label for="form-reg">Contraseña: </label>
-                                    <input type="password" class="form-control" name="l_pass" placeholder="Contraseña" required autofocus>
+                                    <input type="password" class="form-control" name="l_pass" placeholder="Contraseña" required autofocus value="<?php echo $dato->contrasenia; ?>">
                                 </div>
                                 <div class="d-grid">
                                     <input type="hidden" name="oculto" value="1">
@@ -56,6 +66,9 @@
                         </div>  
                     </div>
                 </form>
+                <?php 
+                }
+            ?>
             </div>
         </div>
     </div>

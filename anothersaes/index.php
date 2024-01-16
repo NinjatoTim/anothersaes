@@ -130,7 +130,7 @@
                 <div class="card-header">
                     ¿Eres alumno y no te has registrado? ¡Que esperas!
                 </div>
-                <form action="php/registrar.php" class="p-2" method="post" >
+                <form action="php/aPerfil_create.php" class="p-2" method="post" >
                     <div class="mb-1">
                         <label for="form-label" class="col-lg-5" >Boleta: </label>
                         <input type="text" class="form-control col-lg-5" placeholder="Boleta" name="l_boleta" autofocus required>

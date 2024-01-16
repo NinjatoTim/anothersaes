@@ -14,25 +14,28 @@ if(!$_POST['l_usuario']  || !$_POST['l_pass']){
 
 $usuario = $_POST['l_usuario'];
 $pass = $_POST['l_pass'];
-#print_r($usuario);
-#print_r($pass);
+print_r($usuario);
+print_r($pass);
 $_SESSION['usuario'] = $usuario;
 echo $_SESSION['usuario'];
 
-$sentencia = $bd->prepare("SELECT *
-                        FROM persona
-                        INNER JOIN alumno ON persona.id_persona = alumno.id_persona
-                        WHERE alumno.boleta = ? AND persona.contrasenia = ?;");
-$sentencia->bindParam(1, $boleta, PDO::PARAM_STR);
-$sentencia->bindParam(2, $pass, PDO::PARAM_STR);
+$sentencia = $bd->prepare("SELECT * FROM persona ");
+
+echo " ok? ";
 $sentencia->execute();
-//recordar intercambiar ambos headers
-if ($sentencia->rowCount() > 0) {
+echo "ok excecute";
+$resultados = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+print_r($resultados);
+
+echo "ok fetch";
+
+if ($resultados !== NULL && !empty($resultados)) {
     // Existe esa combinación
-    header('Location: ../index.php?mensaje=error');
+    header('Location: ../php/aIndex.php');
 } else {
     // No se encontraron datos
-    header('Location: ../php/aPerfil_read.php');
+    header('Location: ../index.php?mensaje=error');
 }
 
 

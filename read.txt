@@ -1,3 +1,0 @@
--pantallas
--consultas a bd
-

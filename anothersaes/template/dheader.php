@@ -42,25 +42,21 @@
                                             Perfil
                                             </a>
                                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <li><a class="dropdown-item" href="php/perfilAlumno.php">visualizar</a></li>
-                                                <li><a class="dropdown-item" href="perfilAlumno_editar.php">editar</a></li>
+                                                <li><a class="dropdown-item" href="php/dPerfil_read.php">visualizar</a></li>
+                                                <li><a class="dropdown-item" href="dPerfil_update.php">editar</a></li>
                                             </ul>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Lista de alumnos</a>
+                                            <a class="nav-link" href="dAlumnos_read">Lista de alumnos</a>
                                         </li>
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Cursos
                                             </a>
                                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <li><a class="dropdown-item" href="#">Cursos</a></li>
-                                                <li><a class="dropdown-item" href="#">Mis Horarios</a></li>
-                                                <li><a class="dropdown-item" href="#">Asignaciones</a></li>
-                                                <li><a class="dropdown-item" href="#">Evaluaciones</a></li>
-                                                <li><a class="dropdown-item" href="#">Pago de curso</a></li>
-                                                <li><a class="dropdown-item" href="#">Evaluaciones</a></li> <!--necesito un submenú aqui para realizar y consultar evaluación  -->
-                                                <li><a class="dropdown-item" href="#">Retroalimentación</a></li> 
+                                                <li><a class="dropdown-item" href="dMisCursos_read.php">Cursos</a></li>
+                                                <li><a class="dropdown-item" href="dhorario_read.php">Mis Horarios</a></li>
+                                                <li><a class="dropdown-item" href="dAsignacion_crud.php">Asignaciones</a></li>
                                             </ul>
                                         </li>
                                         <li class="nav-item">

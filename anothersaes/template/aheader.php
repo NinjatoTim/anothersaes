@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="es">
+
     <head>
         <title>Another SAES but better</title>
         <!-- Required meta tags -->
@@ -28,7 +29,12 @@
                 <div class="col-md">   <!--columna-->
                     <header>
                         <!--<img src="src/img/Logo_IPN.png" class="img-fluid float-left" width="5%" > -->
-                        <h4 class="text-center">ESCUELA SUPERIOR DE CÓMPUTO, ¡Bienvenido alumno!</h4>
+                        <?php session_start(); 
+                            if(!isset($_SESSION['usuario'])){
+                                header("location: ../index.php");
+                            }
+                        ?>
+                        <h4 class="text-center">ESCUELA SUPERIOR DE CÓMPUTO, ¡Bienvenido <?php echo $_SESSION['usuario'];  ?>!</h4>
                         <nav class="navbar navbar-expand-lg navbar-light bg-light ">
                             <div class="container-fluid">
                                 <a class="navbar-brand" href="indexalumno.php">Inicio</a>
@@ -51,23 +57,23 @@
                                             Curso
                                             </a>
                                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <li><a class="dropdown-item" href="#">Inscritos</a></li>
-                                                <li><a class="dropdown-item" href="#">Disponibles</a></li>
-                                                <li><a class="dropdown-item" href="#">Inscribir curso</a></li>
-                                                <li><a class="dropdown-item" href="#">Dar de baja curso</a></li>
-                                                <li><a class="dropdown-item" href="#">Pago de curso</a></li>
+                                                <li><a class="dropdown-item" href="aCursoInscrito_read.php">Inscritos</a></li>
+                                                <li><a class="dropdown-item" href="aCursoDisponible_read.php">Disponibles</a></li>
+                                                <li><a class="dropdown-item" href="aCursoInscrito_create.php">Inscribir curso</a></li>
+                                                <li><a class="dropdown-item" href="aCurso_delete.php">Dar de baja curso</a></li>
+                                                <li><a class="dropdown-item" href="aCursoPago_update.php">Pago de curso</a></li>
                                                 <li><a class="dropdown-item" href="#">Evaluaciones</a></li> <!--necesito un submenú aqui para realizar y consultar evaluación  -->
-                                                <li><a class="dropdown-item" href="#">Comprobantes de curso</a></li> 
+                                                <li><a class="dropdown-item" href="aCursoComprobante_read.php">Comprobantes de curso</a></li> 
                                             </ul>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="#">Calificaciones</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Material de consulta</a>
+                                            <a class="nav-link" href="">Material de consulta</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Cerrar sesión</a>
+                                            <a class="nav-link" href="../php/cerrar_sesion.php">Cerrar sesión</a>
                                         </li>
                                     </ul>
                                 </div>

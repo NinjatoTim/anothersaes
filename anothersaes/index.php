@@ -86,7 +86,7 @@
                 <div class="card-header">
                     Iniciar Sesión
                 </div>
-                <form action="php/iniciarSesion.php" class="p-2" method="post" >
+                <form action="php/iniciar_sesion.php" class="p-2" method="post" >
                     <div class="mb-2">
                         <label for="form-ini">Usuario: </label>
                         <input type="text" class="form-control" name="l_usuario"  placeholder="Boleta"  autofocus>

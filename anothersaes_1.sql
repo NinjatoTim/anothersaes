@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 14-01-2024 a las 20:16:15
+-- Tiempo de generación: 16-01-2024 a las 20:37:39
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -32,6 +32,20 @@ CREATE TABLE `alumno` (
   `id_persona` int(11) DEFAULT NULL,
   `estatus` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `alumno`
+--
+
+INSERT INTO `alumno` (`boleta`, `id_persona`, `estatus`) VALUES
+(348920, 10, 'activo'),
+(20180001, 16, 'activo'),
+(20180002, 16, 'activo'),
+(20180003, 16, 'activo'),
+(20180004, 16, 'activo'),
+(20180005, 16, 'activo'),
+(2016630446, 9, 'activo'),
+(2019873847, 8, 'activo');
 
 -- --------------------------------------------------------
 
@@ -73,9 +87,20 @@ CREATE TABLE `asignacion_alumno` (
 CREATE TABLE `curso` (
   `id_curso` int(11) NOT NULL,
   `nombre` varchar(100) DEFAULT NULL,
-  `créditos` int(11) DEFAULT NULL,
+  `creditos` int(11) DEFAULT NULL,
   `precio` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `curso`
+--
+
+INSERT INTO `curso` (`id_curso`, `nombre`, `creditos`, `precio`) VALUES
+(1, 'Matemáticas', 4, 100),
+(2, 'Historia', 3, 80),
+(3, 'Inglés', 2, 120),
+(4, 'Programación', 5, 150),
+(5, 'Ciencias', 4, 90);
 
 -- --------------------------------------------------------
 
@@ -104,6 +129,17 @@ CREATE TABLE `docente` (
   `grado_academico` varchar(100) DEFAULT NULL,
   `estatus` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `docente`
+--
+
+INSERT INTO `docente` (`num_empleado`, `id_persona`, `cédula`, `especialidad`, `grado_academico`, `estatus`) VALUES
+(101, 11, 'ABC123', 'Matemáticas', 'Maestría', 'Activo'),
+(102, 12, 'XYZ456', 'Historia', 'Doctorado', 'Activo'),
+(103, 13, 'DEF789', 'Inglés', 'Licenciatura', 'Activo'),
+(104, 14, 'GHI012', 'Programación', 'Doctorado', 'Activo'),
+(105, 15, 'JKL345', 'Ciencias', 'Licenciatura', 'Activo');
 
 -- --------------------------------------------------------
 
@@ -148,6 +184,25 @@ CREATE TABLE `persona` (
   `contrasenia` varchar(100) DEFAULT NULL,
   `rol` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `persona`
+--
+
+INSERT INTO `persona` (`id_persona`, `aPaterno`, `aMaterno`, `nombre`, `genero`, `fecha_na`, `contrasenia`, `rol`) VALUES
+(8, 'Orozco', 'Solorio', 'Kevin Adrián', 'M', '1999-01-10', 'ojicsk', 'alumno'),
+(9, 'Fuentesss', 'López', 'Eva Melisa', 'M', '2000-05-08', 'jeiwkd', 'alumno'),
+(10, 'keflmdcnkj', 'jkdws', 'jkjdwjkls', 'O', '2000-01-31', 'okldspo', 'alumno'),
+(11, 'Gómez', 'Pérez', 'Juan', 'M', '1980-01-15', 'contraseña123', 'docente'),
+(12, 'Rodríguez', 'López', 'María', 'F', '1985-05-20', 'password456', 'docente'),
+(13, 'Martínez', 'García', 'Carlos', 'M', '1975-09-10', 'segura789', 'docente'),
+(14, 'Hernández', 'Vargas', 'Laura', 'F', '1982-11-25', 'clave123', 'docente'),
+(15, 'Sánchez', 'Ramírez', 'Pedro', 'M', '1978-07-08', 'secreto456', 'docente'),
+(16, 'Gomez', 'Perez', 'Carlos', 'M', '1995-03-15', 'clave123', 'alumno'),
+(17, 'Lopez', 'Martinez', 'Ana', 'F', '1998-07-22', 'pass456', 'alumno'),
+(18, 'Rodriguez', 'Fernandez', 'Javier', 'M', '1997-11-08', 'secret789', 'alumno'),
+(19, 'Hernandez', 'Gutierrez', 'Sofia', 'F', '1996-05-30', 'password123', 'alumno'),
+(20, 'Ramirez', 'Gonzalez', 'Diego', 'M', '1999-02-12', 'key789', 'alumno');
 
 --
 -- Índices para tablas volcadas
@@ -238,7 +293,7 @@ ALTER TABLE `asignacion_alumno`
 -- AUTO_INCREMENT de la tabla `curso`
 --
 ALTER TABLE `curso`
-  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `detalle_pago`
@@ -256,7 +311,7 @@ ALTER TABLE `horario`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Restricciones para tablas volcadas

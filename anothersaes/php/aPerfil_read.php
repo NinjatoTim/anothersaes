@@ -20,8 +20,8 @@ error_reporting(E_ALL);
             </svg>
             <br>
             <?php 
-            echo $alumno; 
-            print_r($persona);
+            #echo $alumno; 
+            #print_r($persona);
             ?>
             <h3 class="text-center">Información personal</h3>
             <?php 

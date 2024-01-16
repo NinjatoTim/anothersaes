@@ -7,10 +7,10 @@ include '../model/conexion.php';
 
 echo "aqui estamos";
 session_start();
-$_SESSION['usuario'] = $usuario;
+#$_SESSION['usuario'] = $alumno;
 print_r($_POST);
 
-$boleta = $_POST['l_boleta'];
+$boleta = $_SESSION['usuario'];
 $aPaterno = $_POST['l_aPaterno'];
 $aMaterno = $_POST['l_aMaterno'];
 $nombre = $_POST['l_nombre'];
@@ -35,27 +35,29 @@ try {
 
         // Actualiza la tabla 'persona'
         $sentenciaPersona = $bd->prepare("UPDATE persona SET aPaterno = ?, aMaterno = ?, nombre = ?, genero = ?, fecha_na = ?, contrasenia = ? WHERE id_persona = ?");
-        $sentenciaPersona->bindParam(1, $nuevoAPaterno, PDO::PARAM_STR);
-        $sentenciaPersona->bindParam(2, $nuevoAMaterno, PDO::PARAM_STR);
-        $sentenciaPersona->bindParam(3, $nuevoNombre, PDO::PARAM_STR);
-        $sentenciaPersona->bindParam(4, $nuevoGenero, PDO::PARAM_STR);
-        $sentenciaPersona->bindParam(5, $nuevaFechaNa, PDO::PARAM_STR);
-        $sentenciaPersona->bindParam(6, $nuevaContrasenia, PDO::PARAM_STR);
+        $sentenciaPersona->bindParam(1, $aPaterno, PDO::PARAM_STR);
+        $sentenciaPersona->bindParam(2, $aMaterno, PDO::PARAM_STR);
+        $sentenciaPersona->bindParam(3, $nombre, PDO::PARAM_STR);
+        $sentenciaPersona->bindParam(4, $genero, PDO::PARAM_STR);
+        $sentenciaPersona->bindParam(5, $fechaNa, PDO::PARAM_STR);
+        $sentenciaPersona->bindParam(6, $pass, PDO::PARAM_STR);
         $sentenciaPersona->bindParam(7, $idPersona, PDO::PARAM_INT);
         $sentenciaPersona->execute();
 
         // Confirma la transacción si todo está bien
         $bd->commit();
 
-        echo "Actualización exitosa";
+        header('Location: aPerfil_update.php?mensaje=editado');
     } else {
-        echo "No se encontró el id_persona para la boleta proporcionada.";
+        echo "aqui hay problema";
+        #header('Location: aPerfil_update.php?mensaje=error');
     }
 } catch (Exception $e) {
     // Si hay algún error, revierte la transacción
     $bd->rollBack();
 
     echo "Error en la actualización: " . $e->getMessage();
+    ('Location: aPerfil_update.php?mensaje=error');
 }
 
 

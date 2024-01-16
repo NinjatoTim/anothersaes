@@ -53,13 +53,13 @@
                                             </ul>
                                         </li>
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                             Curso
                                             </a>
                                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                                 <li><a class="dropdown-item" href="aCursoInscrito_read.php">Inscritos</a></li>
                                                 <li><a class="dropdown-item" href="aCursoDisponible_read.php">Disponibles</a></li>
-                                                <li><a class="dropdown-item" href="aCursoInscrito_create.php">Inscribir curso</a></li>
+                                                <li><a class="dropdown-item" href="aCursoInscribir_create.php">Inscribir curso</a></li>
                                                 <li><a class="dropdown-item" href="aCurso_delete.php">Dar de baja curso</a></li>
                                                 <li><a class="dropdown-item" href="aCursoPago_update.php">Pago de curso</a></li>
                                                 <li><a class="dropdown-item" href="#">Evaluaciones</a></li> <!--necesito un submenú aqui para realizar y consultar evaluación  -->

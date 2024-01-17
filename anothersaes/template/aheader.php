@@ -57,7 +57,7 @@
                                             Curso
                                             </a>
                                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <li><a class="dropdown-item" href="aCursoInscrito_read.php">Inscritos</a></li>
+                                                <li><a class="dropdown-item" href="aCursoInscrito_read.php">Inscritoooos</a></li>
                                                 <li><a class="dropdown-item" href="aCursoDisponible_read.php">Disponibles</a></li>
                                                 <li><a class="dropdown-item" href="aCursoInscribir_create.php">Inscribir curso</a></li>
                                                 <li><a class="dropdown-item" href="aCurso_delete.php">Dar de baja curso</a></li>

@@ -32,7 +32,7 @@ echo "ok fetch";
 
 if ($resultados !== NULL && !empty($resultados)) {
     // Existe esa combinación
-    header('Location: ../php/aIndex.php');
+    header('Location: Alumno/aIndex.php');
 } else {
     // No se encontraron datos
     header('Location: ../index.php?mensaje=error');

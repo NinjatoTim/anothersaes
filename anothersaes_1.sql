@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 16-01-2024 a las 20:37:39
+-- Tiempo de generación: 19-01-2024 a las 05:19:54
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -44,8 +44,19 @@ INSERT INTO `alumno` (`boleta`, `id_persona`, `estatus`) VALUES
 (20180003, 16, 'activo'),
 (20180004, 16, 'activo'),
 (20180005, 16, 'activo'),
-(2016630446, 9, 'activo'),
-(2019873847, 8, 'activo');
+(202079248, 21, 'activo');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `alumno_grupo`
+--
+
+CREATE TABLE `alumno_grupo` (
+  `id_agrupo` int(11) NOT NULL,
+  `boleta` int(11) DEFAULT NULL,
+  `id_grupo` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -150,9 +161,18 @@ INSERT INTO `docente` (`num_empleado`, `id_persona`, `cédula`, `especialidad`, 
 CREATE TABLE `grupo` (
   `id_grupo` varchar(100) NOT NULL,
   `num_empleado` int(11) DEFAULT NULL,
-  `boleta` int(11) DEFAULT NULL,
-  `id_curso` int(11) DEFAULT NULL
+  `id_curso` int(11) DEFAULT NULL,
+  `cupoMax` int(11) NOT NULL,
+  `cupoDisponible` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `grupo`
+--
+
+INSERT INTO `grupo` (`id_grupo`, `num_empleado`, `id_curso`, `cupoMax`, `cupoDisponible`) VALUES
+('2H7D4', 101, 4, 40, 40),
+('2HD4', 103, 3, 40, 40);
 
 -- --------------------------------------------------------
 
@@ -190,8 +210,6 @@ CREATE TABLE `persona` (
 --
 
 INSERT INTO `persona` (`id_persona`, `aPaterno`, `aMaterno`, `nombre`, `genero`, `fecha_na`, `contrasenia`, `rol`) VALUES
-(8, 'Orozco', 'Solorio', 'Kevin Adrián', 'M', '1999-01-10', 'ojicsk', 'alumno'),
-(9, 'Fuentesss', 'López', 'Eva Melisa', 'M', '2000-05-08', 'jeiwkd', 'alumno'),
 (10, 'keflmdcnkj', 'jkdws', 'jkjdwjkls', 'O', '2000-01-31', 'okldspo', 'alumno'),
 (11, 'Gómez', 'Pérez', 'Juan', 'M', '1980-01-15', 'contraseña123', 'docente'),
 (12, 'Rodríguez', 'López', 'María', 'F', '1985-05-20', 'password456', 'docente'),
@@ -202,7 +220,8 @@ INSERT INTO `persona` (`id_persona`, `aPaterno`, `aMaterno`, `nombre`, `genero`,
 (17, 'Lopez', 'Martinez', 'Ana', 'F', '1998-07-22', 'pass456', 'alumno'),
 (18, 'Rodriguez', 'Fernandez', 'Javier', 'M', '1997-11-08', 'secret789', 'alumno'),
 (19, 'Hernandez', 'Gutierrez', 'Sofia', 'F', '1996-05-30', 'password123', 'alumno'),
-(20, 'Ramirez', 'Gonzalez', 'Diego', 'M', '1999-02-12', 'key789', 'alumno');
+(20, 'Ramirez', 'Gonzalez', 'Diego', 'M', '1999-02-12', 'key789', 'alumno'),
+(21, 'Juan', 'Perez', 'Calabaza', 'M', '1999-11-17', '1234567', 'alumno');
 
 --
 -- Índices para tablas volcadas
@@ -214,6 +233,14 @@ INSERT INTO `persona` (`id_persona`, `aPaterno`, `aMaterno`, `nombre`, `genero`,
 ALTER TABLE `alumno`
   ADD PRIMARY KEY (`boleta`),
   ADD KEY `id_persona` (`id_persona`);
+
+--
+-- Indices de la tabla `alumno_grupo`
+--
+ALTER TABLE `alumno_grupo`
+  ADD PRIMARY KEY (`id_agrupo`),
+  ADD KEY `boleta` (`boleta`),
+  ADD KEY `id_grupo` (`id_grupo`);
 
 --
 -- Indices de la tabla `asignacion`
@@ -256,7 +283,6 @@ ALTER TABLE `docente`
 --
 ALTER TABLE `grupo`
   ADD PRIMARY KEY (`id_grupo`),
-  ADD KEY `boleta` (`boleta`),
   ADD KEY `num_empleado` (`num_empleado`),
   ADD KEY `id_curso` (`id_curso`);
 
@@ -276,6 +302,12 @@ ALTER TABLE `persona`
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
+
+--
+-- AUTO_INCREMENT de la tabla `alumno_grupo`
+--
+ALTER TABLE `alumno_grupo`
+  MODIFY `id_agrupo` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `asignacion`
@@ -311,7 +343,7 @@ ALTER TABLE `horario`
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Restricciones para tablas volcadas
@@ -322,6 +354,13 @@ ALTER TABLE `persona`
 --
 ALTER TABLE `alumno`
   ADD CONSTRAINT `alumno_ibfk_1` FOREIGN KEY (`id_persona`) REFERENCES `persona` (`id_persona`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `alumno_grupo`
+--
+ALTER TABLE `alumno_grupo`
+  ADD CONSTRAINT `alumno_grupo_ibfk_1` FOREIGN KEY (`boleta`) REFERENCES `alumno` (`boleta`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `alumno_grupo_ibfk_2` FOREIGN KEY (`id_grupo`) REFERENCES `grupo` (`id_grupo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `asignacion`
@@ -353,7 +392,6 @@ ALTER TABLE `docente`
 -- Filtros para la tabla `grupo`
 --
 ALTER TABLE `grupo`
-  ADD CONSTRAINT `grupo_ibfk_1` FOREIGN KEY (`boleta`) REFERENCES `alumno` (`boleta`) ON UPDATE CASCADE,
   ADD CONSTRAINT `grupo_ibfk_2` FOREIGN KEY (`num_empleado`) REFERENCES `docente` (`num_empleado`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `grupo_ibfk_3` FOREIGN KEY (`id_curso`) REFERENCES `curso` (`id_curso`) ON DELETE CASCADE ON UPDATE CASCADE;
 

@@ -1,12 +1,6 @@
 <?php include '../../template/aheader.php' ?>
 
-<?php
-#include_once "model/conexion.php";
-//print_r($bd);
-#$sentencia = $bd->query("select * from persona");
-#$persona = $sentencia->fetchAll(PDO::FETCH_OBJ);
 
-?>
 
 <div class="container my-5 justify-content-center"  > <!--Contenedor principal-->
     <!--inicio alerta-->
@@ -80,6 +74,12 @@
     ?>
     <!--Fin alerta-->
     <div class="row justify-content-center mt-5">
+    <?php
+        #$host = $_SERVER['HTTP_HOST'];
+        #$url = sprintf("%s%s",$host,"/anothersaes/anothersaes/");
+        #echo $url; 
+        #echo sprintf("%s%s",$url,"usuarios/Alumno/aCursoInscrito_read.php");
+    ?>
         <div class="col-md-6  justify-content-center">
         <br>
             <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-backpack2 mx-auto d-block" viewBox="0 0 16 16">

@@ -1,32 +1,26 @@
 <?php include '../../template/aheader.php' ?>
 <?php
 include_once "../../model/conexion.php";
-
-/*
-    SELECT curso.id_curso, curso.nombre AS nombre_curso, curso.creditos, curso.precio
-FROM alumno
-JOIN grupo ON alumno.boleta = grupo.boleta
-JOIN curso ON grupo.id_curso = curso.id_curso
-WHERE alumno.boleta = 'tu_boleta';
-    */
-$alumno = $_SESSION['usuario'];
-$sentencia = $bd->query("SELECT curso.id_curso, curso.nombre AS nombre_curso, curso.creditos, curso.precio,
-docente.num_empleado, persona.nombre AS nombre_docente
-FROM alumno
-JOIN grupo ON alumno.boleta = grupo.boleta
-JOIN curso ON grupo.id_curso = curso.id_curso
-JOIN docente ON grupo.num_empleado = docente.num_empleado
-JOIN persona ON docente.id_persona = persona.id_persona
-WHERE alumno.boleta = '$alumno';");
-$persona = $sentencia->fetchAll(PDO::FETCH_OBJ);
-print_r($persona);
+$sentencia = $bd->query("SELECT 
+ag.id_agrupo,
+g.id_grupo,
+c.nombre AS nombre_curso,
+CONCAT(p.nombre, ' ', p.aPaterno, ' ', p.aMaterno) AS nombre_profesor
+FROM alumno_grupo ag
+JOIN grupo g ON ag.id_grupo = g.id_grupo
+JOIN curso c ON g.id_curso = c.id_curso
+JOIN docente d ON g.num_empleado = d.num_empleado
+JOIN persona p ON d.id_persona = p.id_persona
+WHERE ag.boleta = '$boleta';");
+$consulta = $sentencia->fetchAll(PDO::FETCH_OBJ);
+#print_r($consulta);
 ?>
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-8">
-            <h3 class="text-center">Cursos inscritos actualmente</h3>
+        <div class="col-5">
+            <h3 class="text-center">Cursos Inscritos</h3>
             <?php
-            if (isset($_GET['mensaje']) and $_GET['mensaje'] == 'falta') {
+            foreach ($consulta as $dato) {
             ?>
                 <div class="border border-dark rounded mx-4 px-4 my-4 py-4  ">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-mortarboard mx-auto d-block" viewBox="0 0 16 16">
@@ -35,26 +29,25 @@ print_r($persona);
                     </svg>
                     <h5>Nombre: </h5>
                     <div>
-                        <label class="form-label">Grupo: </label>
+                        <label class="form-label fw-bold text-success">Grupo: </label>
                         <label class="form-label"><?php echo $dato->id_grupo; ?></label>
                     </div>
                     <div>
-                        <label class="form-label">Profesor: </label>
-                        <label class="form-label"><?php echo $dato->nombre_docente; ?></label>
-
-                    </div>
-                    <div><label class="form-label">Avance: </label>
-                        <label class="form-label">0%</label>
-
+                        <label class="form-label fw-bold text-success">Clase: </label>
+                        <label class="form-label"><?php echo $dato->nombre_curso; ?></label>
                     </div>
                     <div>
-                        <a class="link-danger" href="http://">Ir al material de la clase</a>
+                        <label class="form-label fw-bold text-success">Profesor: </label>
+                        <label class="form-label"><?php echo $dato->nombre_profesor; ?></label>
+                    </div>
+                    <div>
+                        <label class="form-label fw-bold text-success">Cupo Disponible: </label>
+                        <label class="form-label"><?php echo $dato->cupoDisponible; ?></label>
                     </div>
                 </div>
             <?php
             }
             ?>
-
         </div>
     </div>
 </div>

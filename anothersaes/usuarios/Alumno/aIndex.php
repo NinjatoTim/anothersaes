@@ -1,4 +1,4 @@
-<?php include '../template/aheader.php' ?>
+<?php include '../../template/aheader.php' ?>
 
 <?php
 #include_once "model/conexion.php";

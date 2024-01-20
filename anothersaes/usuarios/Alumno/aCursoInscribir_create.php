@@ -1,6 +1,6 @@
-<?php include '../template/aheader.php' ?>
+<?php include '../../template/aheader.php' ?>
 <?php
-include_once "model/conexion.php";
+include_once "../../model/conexion.php";
 
 $alumno = $_SESSION['usuario'];
 $sentencia = $bd->query("SELECT 
@@ -59,4 +59,4 @@ print_r($resultado);
         </div>
     </div>
 </div>
-<?php include '../template/footer.php' ?>
+<?php include '../../template/footer.php' ?>

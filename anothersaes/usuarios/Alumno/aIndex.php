@@ -93,9 +93,9 @@
             <br>
             <div class="d-grid gap-2">
                 <a href="https://www.ipn.mx/assets/files/normatividad/docs/reglamentos/Reglamento-Organico-IPN-2020.pdf" TARGET="_BLANK" class="btn btn-lg btn-outline-dark">Consultar reglamento</a>
-                <a href="bellakoz.php" class="btn btn-lg btn-outline-dark">Acerca de Bellakos</a>
+                <a href="../bellakoz.php" class="btn btn-lg btn-outline-dark">Acerca de Bellakos</a>
             </div>
         </div>
     </div>
 </div>
-<?php include '../template/footer.php' ?>
+<?php include '../../template/footer.php' ?>

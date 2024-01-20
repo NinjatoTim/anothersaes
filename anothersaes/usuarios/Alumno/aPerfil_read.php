@@ -1,9 +1,9 @@
-<?php include '../template/aheader.php' ?>
+<?php include '../../template/aheader.php' ?>
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-    include_once "../model/conexion.php";
+    include_once "../../model/conexion.php";
     $alumno = $_SESSION['usuario'];
     $sentencia = $bd -> query("SELECT *
         FROM persona
@@ -97,6 +97,6 @@ error_reporting(E_ALL);
         </div>
     </div>
 </div>
-<?php include '../template/footer.php' ?>
+<?php include '../../template/footer.php' ?>
 
 

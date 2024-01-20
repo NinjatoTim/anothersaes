@@ -1,6 +1,6 @@
-<?php include '../template/aheader.php' ?>
+<?php include '../../template/aheader.php' ?>
 <?php
-include_once "model/conexion.php";
+include_once "../../model/conexion.php";
 
 /*
     SELECT curso.id_curso, curso.nombre AS nombre_curso, curso.creditos, curso.precio
@@ -58,4 +58,4 @@ print_r($persona);
         </div>
     </div>
 </div>
-<?php include '../template/footer.php' ?>
+<?php include '../../template/footer.php' ?>

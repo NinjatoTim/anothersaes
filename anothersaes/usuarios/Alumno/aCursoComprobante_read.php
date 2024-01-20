@@ -1,4 +1,4 @@
-<?php include '../template/aheader.php' ?>
+<?php include '../../template/aheader.php' ?>
 
 <div class="container mt-5">
     <div class="row justify-content-center">
@@ -31,6 +31,6 @@
         </div>
     </div>
 </div>
-<?php include '../template/footer.php' ?>
+<?php include '../../template/footer.php' ?>
 
 

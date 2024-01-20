@@ -16,7 +16,7 @@ $url = sprintf("%s%s%s","http://",$host,"/anothersaes/anothersaes/");
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <!--cdn icons-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php sprintf("%s%s",$host,"/anothersaes/anothersaes/src/css/stylesheet.css");?>">
+    <link rel="stylesheet" type="text/css" href="../src/css/stylesheet.css">
 </head>
 
 <body>
@@ -32,8 +32,8 @@ $url = sprintf("%s%s%s","http://",$host,"/anothersaes/anothersaes/");
                         header("location: ../index.php");
                     }
                         
-                    ?>
-                    <h4 class="text-center">ESCUELA SUPERIOR DE CÓMPUTO, ¡Bienvenido <?php echo $_SESSION['usuario'];  ?>!</h4>
+                    ?> 
+                    <h4 class="text-center">ESCUELA SUPERIOR DE CÓMPUTO, ¡Bienvenido <?php echo $url; echo $_SESSION['usuario'];  ?>!</h4>
                     <nav class="navbar navbar-expand-lg navbar-light bg-light ">
                         <div class="container-fluid">
                             <a class="navbar-brand" href="aIndex.php">Inicio</a>
@@ -57,8 +57,8 @@ $url = sprintf("%s%s%s","http://",$host,"/anothersaes/anothersaes/");
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         
-                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s",$url,"usuarios/Alumno/aCursoInscrito_read.php")?>">Inscritos</a></li>
-                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s",$url,"usuarios/Alumno/aCursoDisponible_read.php")?>">Disponibles</a></li>
+                                            <li><a class="dropdown-item" href="aCursoInscrito_read.php">Inscritos</a></li>
+                                            <li><a class="dropdown-item" href="aCursoDisponible_read.php">Disponibles</a></li>
                                             <li><a class="dropdown-item" href="aCursoInscribir_create.php">Inscribir curso</a></li>
                                             <li><a class="dropdown-item" href="aCurso_delete.php">Dar de baja curso</a></li>
                                             <li><a class="dropdown-item" href="aCursoPago_update.php">Pago de curso</a></li>

@@ -1,7 +1,10 @@
+<br><br><br>
+<?php ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL); ?>
 <?php include '../../template/aheader.php' ?>
+<?php include_once "../../model/conexion.php"; ?>
 <?php
-include_once "../../model/conexion.php";
-
 $alumno = $_SESSION['usuario'];
 $sentencia = $bd->query("SELECT 
 grupo.id_grupo,

@@ -1,4 +1,10 @@
+<?php 
+$host = $_SERVER['HTTP_HOST'];
+$url = sprintf("%s%s%s","http://",$host,"/anothersaes/anothersaes/");
+#echo $url; 
+?>
 <?php include '../template/aheader.php' ?>
+<?php echo sprintf("%s%s",$url,"template/aheader.php")?>
 
 <div class="container mt-5">
     <div class="row justify-content-center">

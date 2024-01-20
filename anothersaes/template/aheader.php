@@ -16,7 +16,7 @@ $url = sprintf("%s%s%s","http://",$host,"/anothersaes/anothersaes/");
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <!--cdn icons-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php sprintf("%s%s",$host,"/anothersaes/anothersaes/src/css/stylesheet.css");?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo sprintf("%s%s",$url,"src/css/stylesheet.css");?>">
 </head>
 
 <body>
@@ -33,7 +33,8 @@ $url = sprintf("%s%s%s","http://",$host,"/anothersaes/anothersaes/");
                     }
                         
                     ?>
-                    <h4 class="text-center">ESCUELA SUPERIOR DE CÓMPUTO, ¡Bienvenido <?php echo $_SESSION['usuario'];  ?>!</h4>
+                    <h4 class="text-center">ESCUELA SUPERIOR DE CÓMPUTO, ¡Bienvenido <?php echo $_SESSION['usuario'];?>!</h4>
+                    <?php echo sprintf("%s%s",$url,"src/css/stylesheet.css");?>
                     <nav class="navbar navbar-expand-lg navbar-light bg-light ">
                         <div class="container-fluid">
                             <a class="navbar-brand" href="aIndex.php">Inicio</a>

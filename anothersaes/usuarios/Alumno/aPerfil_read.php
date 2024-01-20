@@ -1,4 +1,9 @@
-<?php include '../../template/aheader.php' ?>
+<?php 
+$host = $_SERVER['HTTP_HOST'];
+$url = sprintf("%s%s%s","http://",$host,"/anothersaes/anothersaes/");
+#echo $url; 
+?>
+<?php include $url."template/aheader.php"; ?>
 <?php
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);

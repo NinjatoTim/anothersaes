@@ -4,7 +4,22 @@ include_once "../../model/conexion.php";
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-$sentencia = $bd->query("SELECT g.id_grupo, c.nombre AS nombre_curso, CONCAT(p.nombre, ' ', p.aPaterno, ' ', p.aMaterno) AS nombre_profesor, cupoDisponible FROM grupo g JOIN docente d ON g.num_empleado = d.num_empleado JOIN curso c ON g.id_curso = c.id_curso JOIN persona p ON d.id_persona = p.id_persona WHERE g.cupoDisponible > 0;");
+$sentencia = $bd->query("SELECT
+grupo.id_grupo,grupo.cupoDisponible,
+curso.nombre AS nombre_curso,
+curso.creditos,
+curso.precio,
+CONCAT(persona.nombre, ' ', persona.aPaterno, ' ', persona.aMaterno) AS nombre_docente
+FROM
+grupo
+JOIN
+curso ON grupo.id_curso = curso.id_curso
+JOIN
+docente ON grupo.num_empleado = docente.num_empleado
+JOIN
+persona ON docente.id_persona = persona.id_persona
+WHERE
+grupo.cupoDisponible > 0;");
 $consulta = $sentencia->fetchAll(PDO::FETCH_OBJ);
 #print_r($consulta);
 ?>
@@ -31,11 +46,15 @@ $consulta = $sentencia->fetchAll(PDO::FETCH_OBJ);
                     </div>
                     <div>
                         <label class="form-label fw-bold text-success">Profesor: </label>
-                        <label class="form-label"><?php echo $dato->nombre_profesor; ?></label>
+                        <label class="form-label"><?php echo $dato->nombre_docente; ?></label>
                     </div>
                     <div>
                         <label class="form-label fw-bold text-success">Cupo Disponible: </label>
                         <label class="form-label"><?php echo $dato->cupoDisponible; ?></label>
+                    </div>
+                    <div>
+                        <label class="form-label fw-bold text-success">Precio: </label>
+                        <label class="form-label"><?php echo "$ ".$dato->precio.".00"; ?></label>
                     </div>
                 </div>
             <?php

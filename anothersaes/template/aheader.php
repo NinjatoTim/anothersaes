@@ -50,8 +50,8 @@ if (!isset($_SESSION['usuario'])) {
                                             Perfil
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="aPerfil_read.php">visualizar</a></li>
-                                            <li><a class="dropdown-item" href="aPerfil_update.php">editar</a></li>
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s",$url,"usuarios/Alumno/aPerfil_read.php")?>">visualizar</a></li>
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s",$url,"usuarios/Alumno/aPerfil_update.php")?>">editar</a></li>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
@@ -59,24 +59,30 @@ if (!isset($_SESSION['usuario'])) {
                                             Curso
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        
                                             <li><a class="dropdown-item" href="<?php echo sprintf("%s%s",$url,"usuarios/Alumno/aCursoInscrito_read.php")?>">Inscritos</a></li>
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s",$url,"usuarios/Alumno/aAvance_read.php")?>">Avance inscritos</a></li>
                                             <li><a class="dropdown-item" href="<?php echo sprintf("%s%s",$url,"usuarios/Alumno/aCursoDisponible_read.php")?>">Disponibles</a></li>
-                                            <li><a class="dropdown-item" href="aCursoInscribir_create.php">Inscribir curso</a></li>
-                                            <li><a class="dropdown-item" href="aCurso_delete.php">Dar de baja curso</a></li>
-                                            <li><a class="dropdown-item" href="aCursoPago_update.php">Pago de curso</a></li>
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s",$url,"usuarios/Alumno/aCursoInscribir_create.php")?>">Inscribir curso</a></li>
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s",$url,"usuarios/Alumno/aCurso_delete.php")?>">Dar de baja curso</a></li>
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s",$url,"usuarios/Alumno/aCursoPago_update.php")?>">Pago de curso</a></li>
                                             <!--<li><a class="dropdown-item" href="#">Evaluaciones</a></li>--> <!--necesito un submenú aqui para realizar y consultar evaluación  -->
-                                            <li><a class="dropdown-item" href="aCursoComprobante_read.php">Comprobantes de curso</a></li>
+                                            <li><a class="dropdown-item" href="aCursoComprobante_read.php">Certificados de curso</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Asignaciones
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s",$url,"usuarios/Alumno/aCalificaciones_read.php")?>">Consultar calificacion</a></li>
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s",$url,"usuarios/Alumno/aAsignaciones_update.php")?>">Hacer asignaciones</a></li>
                                         </ul>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="#">Calificaciones</a>
+                                        <a class="nav-link" href="<?php echo sprintf("%s%s",$url,"usuarios/Alumno/aMaterial_read.php")?>">Material de consulta</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="">Material de consulta</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="../cerrar_sesion.php">Cerrar sesión</a>
+                                        <a class="nav-link" href="<?php echo sprintf("%s%s",$url,"usuarios/cerrar_sesion.php")?>">Cerrar sesión</a>
                                     </li>
                                 </ul>
                             </div>

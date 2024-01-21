@@ -84,7 +84,7 @@
         <div class="col-md-3">
             <div class="card">
                 <div class="card-header">
-                    Iniciar Sesión
+                    ¿Eres alumno? Inicia sesión aqui
                 </div>
                 <form action="usuarios/iniciar_sesion.php" class="p-2" method="post" >
                     <div class="mb-2">
@@ -97,7 +97,36 @@
                     </div>
                     <div class="d-grid">
                         <input type="hidden" name="oculto" value="1">
-                        <input type="submit" class="btn btn-primary" value="Iniciar sesión">
+                        <input type="submit" class="btn btn-dark" value="Iniciar sesión">
+                    </div>
+                </form>
+            </div>
+            <br>
+            <div class="card">
+                <div class="card-header">
+                    ¿Eres administrador, docente o coordinador? Inicia sesion aqui
+                </div>
+                <form action="usuarios/iniciar_sesion.php" class="p-2" method="post" >
+                    <div class="mb-2">
+                        <label for="form-ini">Usuario: </label>
+                        <input type="text" class="form-control" name="l_usuario"  placeholder="Número de empleado"  autofocus>
+                    </div>
+                    <div class="mb-2">
+                        <label for="form-ini">Contraseña: </label>
+                        <input type="text" class="form-control" name="l_pass" placeholder="Contraseña" required autofocus>
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">Rol: </label>
+                        <select class="form-select" name="l_rol" id="l_rol">
+                            <option selected>Selecciona rol</option>    
+                            <option value="docente">Docente</option>
+                            <option value="coordinador">Coordinador</option>
+                            <option value="administrador">Administrador</option>
+                        </select>
+                    </div>
+                    <div class="d-grid">
+                        <input type="hidden" name="oculto" value="1">
+                        <input type="submit" class="btn btn-warning" value="Iniciar sesión">
                     </div>
                 </form>
             </div>
@@ -166,7 +195,7 @@
                     </div>
                     <div class="d-grid">
                         <input type="hidden" name="oculto" value="1">
-                        <input type="submit" class="btn btn-primary" value="Registrar">
+                        <input type="submit" class="btn btn-dark" value="Registrar">
                     </div>
                 </form>
             </div>

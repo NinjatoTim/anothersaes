@@ -14,28 +14,39 @@ if(!$_POST['l_usuario']  || !$_POST['l_pass']){
 
 $usuario = $_POST['l_usuario'];
 $pass = $_POST['l_pass'];
-print_r($usuario);
-print_r($pass);
-$_SESSION['usuario'] = $usuario;
-echo $_SESSION['usuario'];
 
-$sentencia = $bd->prepare("SELECT * FROM persona ");
 
-echo " ok? ";
-$sentencia->execute();
-echo "ok excecute";
-$resultados = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
-print_r($resultados);
+$sentencia = $bd->prepare("SELECT
+*
+FROM
+persona
+JOIN
+alumno ON persona.id_persona = alumno.id_persona
+WHERE
+alumno.boleta = $usuario
+AND persona.contrasenia = '$pass';");
 
-echo "ok fetch";
+try {
+    // consulta SQL 
+    $sentencia->execute();
 
-if ($resultados !== NULL && !empty($resultados)) {
-    // Existe esa combinación
-    header('Location: Alumno/aIndex.php');
-} else {
-    // No se encontraron datos
-    header('Location: ../index.php?mensaje=error');
+    // Obtener resultados
+    $resultados = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($resultados !== NULL && !empty($resultados)) {
+        // Existe esa combinación
+        $_SESSION['usuario'] = $usuario;
+        header('Location: Alumno/aIndex.php');
+    } else {
+        // No se encontraron datos
+        header('Location: ../index.php?mensaje=error');
+    }
+} catch (PDOException $e) {
+    // Capturar y manejar errores de la base de datos
+    echo "Error en la consulta: " . $e->getMessage();
+    // Puedes redirigir o mostrar un mensaje de error específico según tus necesidades
+     header('Location: ../index.php?mensaje=error');
 }
 
 

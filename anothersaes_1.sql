@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-01-2024 a las 05:19:54
+-- Tiempo de generación: 21-01-2024 a las 17:22:58
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -55,7 +55,8 @@ INSERT INTO `alumno` (`boleta`, `id_persona`, `estatus`) VALUES
 CREATE TABLE `alumno_grupo` (
   `id_agrupo` int(11) NOT NULL,
   `boleta` int(11) DEFAULT NULL,
-  `id_grupo` varchar(100) DEFAULT NULL
+  `id_grupo` varchar(100) DEFAULT NULL,
+  `url_certificado` varchar(250) DEFAULT 'Aun no reunes los requisitos para solicitar certificado'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -86,7 +87,7 @@ CREATE TABLE `asignacion_alumno` (
   `id_asignacion` int(11) DEFAULT NULL,
   `boleta` int(11) DEFAULT NULL,
   `calificacion` int(11) DEFAULT NULL,
-  `url` varchar(255) DEFAULT NULL
+  `url` varchar(255) DEFAULT 'no has hecho esta asignacion'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -98,7 +99,6 @@ CREATE TABLE `asignacion_alumno` (
 CREATE TABLE `curso` (
   `id_curso` int(11) NOT NULL,
   `nombre` varchar(100) DEFAULT NULL,
-  `creditos` int(11) DEFAULT NULL,
   `precio` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -106,12 +106,12 @@ CREATE TABLE `curso` (
 -- Volcado de datos para la tabla `curso`
 --
 
-INSERT INTO `curso` (`id_curso`, `nombre`, `creditos`, `precio`) VALUES
-(1, 'Matemáticas', 4, 100),
-(2, 'Historia', 3, 80),
-(3, 'Inglés', 2, 120),
-(4, 'Programación', 5, 150),
-(5, 'Ciencias', 4, 90);
+INSERT INTO `curso` (`id_curso`, `nombre`, `precio`) VALUES
+(1, 'Matemáticas', 100),
+(2, 'Historia', 80),
+(3, 'Inglés', 120),
+(4, 'Programación', 150),
+(5, 'Ciencias', 90);
 
 -- --------------------------------------------------------
 

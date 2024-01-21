@@ -4,24 +4,33 @@ include_once "../../model/conexion.php";
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-$sentencia = $bd->query("SELECT 
-ag.id_agrupo,
-g.id_grupo,
-c.nombre AS nombre_curso,
-CONCAT(p.nombre, ' ', p.aPaterno, ' ', p.aMaterno) AS nombre_profesor
-FROM alumno_grupo ag
-JOIN grupo g ON ag.id_grupo = g.id_grupo
-JOIN curso c ON g.id_curso = c.id_curso
-JOIN docente d ON g.num_empleado = d.num_empleado
-JOIN persona p ON d.id_persona = p.id_persona
-WHERE ag.boleta = '$boleta';");
+$sentencia = $bd->query("SELECT
+grupo.id_grupo,
+curso.nombre AS nombre_curso,
+COUNT(DISTINCT asignacion_alumno.id_asignacion) AS numero_asignaciones_alumno,
+COUNT(DISTINCT asignacion.id_asignacion) AS numero_asignaciones_grupo
+FROM
+grupo
+JOIN
+curso ON grupo.id_curso = curso.id_curso
+LEFT JOIN
+asignacion ON grupo.id_grupo = asignacion.id_grupo
+LEFT JOIN
+asignacion_alumno ON asignacion.id_asignacion = asignacion_alumno.id_asignacion
+LEFT JOIN
+alumno ON asignacion_alumno.boleta = alumno.boleta
+WHERE
+grupo.cupoDisponible > 0
+AND alumno.boleta = 202079248
+GROUP BY
+grupo.id_grupo, curso.nombre, curso.creditos, curso.precio;");
 $consulta = $sentencia->fetchAll(PDO::FETCH_OBJ);
 #print_r($consulta);
 ?>
 <div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-5">
-            <h3 class="text-center">Cursos Inscritos</h3>
+        <div class="col-8">
+            <h3 class="text-center">Avance en mis cursos</h3>
             <?php
             foreach ($consulta as $dato) {
             ?>
@@ -40,12 +49,17 @@ $consulta = $sentencia->fetchAll(PDO::FETCH_OBJ);
                         <label class="form-label"><?php echo $dato->nombre_curso; ?></label>
                     </div>
                     <div>
-                        <label class="form-label fw-bold text-success">Profesor: </label>
-                        <label class="form-label"><?php echo $dato->nombre_profesor; ?></label>
-                    </div>
-                    <div>
-                        <label class="form-label fw-bold text-success">Cupo Disponible: </label>
-                        <label class="form-label"><?php echo $dato->cupoDisponible; ?></label>
+                        <label class="form-label fw-bold text-success">Avance: </label>
+                        <label class="form-label">
+                            <?php  
+                                $numAlumno = $dato->numero_asignaciones_alumno; #alumno
+                                $numGrupo = $dato->numero_asignaciones_grupo; #grupo
+                                
+                                $avance = ($numAlumno*(100)) / $numGrupo;
+                                echo number_format($avance, 2, '.', '')." %";
+                            
+                            ?>
+                        </label>
                     </div>
                 </div>
             <?php

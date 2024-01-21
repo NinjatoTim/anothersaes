@@ -10,7 +10,6 @@ $boleta = $_SESSION['usuario'];
 if (!isset($_SESSION['usuario'])) {
     header("location: ../index.php");
 }
-    
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -39,7 +38,7 @@ if (!isset($_SESSION['usuario'])) {
                     <?php #echo $boleta;?>
                     <nav class="navbar navbar-expand-lg navbar-light bg-light ">
                         <div class="container-fluid">
-                            <a class="navbar-brand" href="aIndex.php">Inicio</a>
+                            <a class="navbar-brand" href="<?php echo sprintf("%s%s",$url,"usuarios/Alumno/aIndex.php")?>">Inicio</a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>

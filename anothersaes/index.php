@@ -106,7 +106,7 @@
                 <div class="card-header">
                     ¿Eres administrador, docente o coordinador? Inicia sesion aqui
                 </div>
-                <form action="usuarios/iniciar_sesion.php" class="p-2" method="post" >
+                <form action="usuarios/iniciar_sesion_dca.php" class="p-2" method="post" >
                     <div class="mb-2">
                         <label for="form-ini">Usuario: </label>
                         <input type="text" class="form-control" name="l_usuario"  placeholder="Número de empleado"  autofocus>

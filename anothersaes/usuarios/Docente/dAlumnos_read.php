@@ -1,55 +1,90 @@
-<?php include '../template/dheader.php' ?>
+<?php
+include '../../template/dheader.php';
+include_once "../../model/conexion.php";
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+#consulta grupos
+$usuario = $_SESSION['usuario'];
+$sentencia = $bd->query("SELECT
+grupo.id_grupo,
+curso.nombre AS nombre_curso
+FROM
+docente
+JOIN
+grupo ON docente.num_empleado = grupo.num_empleado
+JOIN
+curso ON grupo.id_curso = curso.id_curso
+WHERE
+docente.num_empleado = $usuario;");
+$grupos = $sentencia->fetchAll(PDO::FETCH_OBJ);
+#consulta alumnos
 
-<div class="container mt-5 ">
+function buscarAlumnos($grupo) {
+    include_once "../../model/conexion.php";
+    $usuario = $_SESSION['usuario'];
+    $sentencia = $bd->query("SELECT
+    alumno.boleta,
+    persona.nombre AS nombre_alumno,
+    persona.aPaterno,
+    persona.aMaterno
+  FROM
+    docente
+  JOIN
+    grupo ON docente.num_empleado = grupo.num_empleado
+  JOIN
+    alumno_grupo ON grupo.id_grupo = alumno_grupo.id_grupo
+  JOIN
+    alumno ON alumno_grupo.boleta = alumno.boleta
+  JOIN
+    persona ON alumno.id_persona = persona.id_persona
+  WHERE
+    docente.num_empleado = $usuario
+    AND grupo.id_grupo = '$grupo';");
+    $sujeto = $sentencia->fetchAll(PDO::FETCH_OBJ);    
+    
+    }
+    
+    //Fin de declaración de funciones
+    
+    
+    
+    
+
+?>
+<div class="container mt-5">
     <div class="row justify-content-center">
-        <div class="col-md-11 text-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-video2" viewBox="0 0 16 16">
-                <path d="M10 9.05a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
-                <path d="M2 1a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zM1 3a1 1 0 0 1 1-1h2v2H1zm4 10V2h9a1 1 0 0 1 1 1v9c0 .285-.12.543-.31.725C14.15 11.494 12.822 10 10 10c-3.037 0-4.345 1.73-4.798 3zm-4-2h3v2H2a1 1 0 0 1-1-1zm3-1H1V8h3zm0-3H1V5h3z" />
-            </svg>
-            <span class="text-center fs-3 ">Lista de alumnos</span>
-            <div class="card">
-                <div class="card-header">
-                    Grupo
+        <h3 class="text-center">Listas alumnos</h3>
+        <span class="fw-bold text-center ">Grupos asignados: grupo - materia</span>
+        
+        <?php
+        foreach ($grupos as $dato) {
+        ?>
+            <span class="text-center"><?php echo '<i class="bi bi-caret-right-fill"></i> ' . $dato->id_grupo . " - " . $dato->nombre_curso;  ?></span>
+        <?php
+        }
+        ?>
+        <br><br><br><br><br>
+        <p class="text-center">Escriba el grupo para consultar su lista de alumnos</p>
+        <div class="col-5">
+            <!-- grupos -->
+            
+            <form action="dAlumnosProceso_read.php" class="p-2" method="POST" target="_blank">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="l_grupo" placeholder="Grupo" aria-label="Input group example" aria-describedby="btnGroupAddon">
+                    <div class="input-group-prepend">
+                        <button type="submit" class="input-group-text"><i class="bi bi-search"></i></button>
+                    </div>
                 </div>
-                <div class="p-2">
-                    <table class="table align-middle">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Boleta</th>
-                                <th scope="col">Apellido Paterno</th>
-                                <th scope="col">Apellido Materno</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Genero</th>
-                            </tr>
-                        </thead>
-                        <tbody>
+            </form>
+        </div>
+        <div class="col-12">
+            <!-- grupos -->
+            
 
-                            <?php
-                            foreach ($persona as $dato) {
-                            ?>
-
-                                <tr>
-                                    <td scope="row"><?php echo $dato->codigo; ?></td>
-                                    <td><?php echo $dato->iden_institucional; ?></td>
-                                    <td><?php echo $dato->aPaterno; ?></td>
-                                    <td><?php echo $dato->aMaterno; ?></td>
-                                    <td><?php echo $dato->nombre; ?></td>
-                                    <td><?php echo $dato->funcion; ?></td>
-                                </tr>
-
-                            <?php
-                            }
-                            ?>
-
-                        </tbody>
-                    </table>
-
-                </div>
-            </div>
 
         </div>
     </div>
 </div>
-<?php include '../template/footer.php' ?>
+
+<?php include '../../template/footer.php' ?>

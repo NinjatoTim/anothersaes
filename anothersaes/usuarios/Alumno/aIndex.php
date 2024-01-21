@@ -1,8 +1,12 @@
-<?php include '../../template/aheader.php' ?>
-
-
-
-<div class="container my-5 justify-content-center"  > <!--Contenedor principal-->
+<?php
+include '../../template/aheader.php';
+include_once "../../model/conexion.php";
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+?>
+<?php  ?>
+<div class="container my-5 justify-content-center"> <!--Contenedor principal-->
     <!--inicio alerta-->
     <?php
     if (isset($_GET['mensaje']) and $_GET['mensaje'] == 'eliminado') {
@@ -74,14 +78,14 @@
     ?>
     <!--Fin alerta-->
     <div class="row justify-content-center mt-5">
-    <?php
+        <?php
         #$host = $_SERVER['HTTP_HOST'];
         #$url = sprintf("%s%s",$host,"/anothersaes/anothersaes/");
         #echo $url; 
         #echo sprintf("%s%s",$url,"usuarios/Alumno/aCursoInscrito_read.php");
-    ?>
+        ?>
         <div class="col-md-6  justify-content-center">
-        <br>
+            <br>
             <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="currentColor" class="bi bi-backpack2 mx-auto d-block" viewBox="0 0 16 16">
                 <path d="M4.04 7.43a4 4 0 0 1 7.92 0 .5.5 0 1 1-.99.14 3 3 0 0 0-5.94 0 .5.5 0 1 1-.99-.14" />
                 <path fill-rule="evenodd" d="M4 9.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-7a.5.5 0 0 1-.5-.5zm1 .5v3h6v-3h-1v.5a.5.5 0 0 1-1 0V10z" />

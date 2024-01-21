@@ -1,6 +1,9 @@
-<?php include '../../template/aheader.php' ?>
-<?php
+<?php 
+include '../../template/aheader.php';
 include_once "../../model/conexion.php";
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $sentencia = $bd->query("SELECT g.id_grupo, c.nombre AS nombre_curso, CONCAT(p.nombre, ' ', p.aPaterno, ' ', p.aMaterno) AS nombre_profesor, cupoDisponible FROM grupo g JOIN docente d ON g.num_empleado = d.num_empleado JOIN curso c ON g.id_curso = c.id_curso JOIN persona p ON d.id_persona = p.id_persona WHERE g.cupoDisponible > 0;");
 $consulta = $sentencia->fetchAll(PDO::FETCH_OBJ);
 #print_r($consulta);

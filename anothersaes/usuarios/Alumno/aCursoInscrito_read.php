@@ -1,6 +1,9 @@
-<?php include '../../template/aheader.php' ?>
-<?php
+<?php 
+include '../../template/aheader.php';
 include_once "../../model/conexion.php";
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $sentencia = $bd->query("SELECT 
 ag.id_agrupo,
 g.id_grupo,

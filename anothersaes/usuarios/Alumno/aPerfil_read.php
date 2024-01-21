@@ -1,21 +1,16 @@
-<?php 
-$host = $_SERVER['HTTP_HOST'];
-$url = sprintf("%s%s%s","http://",$host,"/anothersaes/anothersaes/");
-#echo $url; 
-?>
-<?php include $url."template/aheader.php"; ?>
 <?php
+include '../../template/aheader.php';
+include_once "../../model/conexion.php";
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-    include_once "../../model/conexion.php";
-    $alumno = $_SESSION['usuario'];
-    $sentencia = $bd -> query("SELECT *
-        FROM persona
-        INNER JOIN alumno ON persona.id_persona = alumno.id_persona
-        WHERE alumno.boleta = $alumno;");
-    $persona = $sentencia->fetchAll(PDO::FETCH_OBJ);
-    #print_r($persona);
+$alumno = $_SESSION['usuario'];
+$sentencia = $bd -> query("SELECT *
+    FROM persona
+    INNER JOIN alumno ON persona.id_persona = alumno.id_persona
+    WHERE alumno.boleta = $alumno;");
+$persona = $sentencia->fetchAll(PDO::FETCH_OBJ);
+#print_r($persona);
 ?>
 <div class="container mt-5">
     <div class="row justify-content-center">

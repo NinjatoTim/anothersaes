@@ -1,6 +1,10 @@
-<?php include '../../template/aheader.php' ?>
-<?php
-    include_once "../../model/conexion.php";
+<?php 
+include '../../template/aheader.php';
+include_once "../../model/conexion.php";
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
     $alumno = $_SESSION['usuario'];
     $sentencia = $bd -> query("SELECT *
         FROM persona

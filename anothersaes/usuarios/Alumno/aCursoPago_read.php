@@ -1,10 +1,10 @@
 <?php 
-$host = $_SERVER['HTTP_HOST'];
-$url = sprintf("%s%s%s","http://",$host,"/anothersaes/anothersaes/");
-#echo $url; 
+include '../../template/aheader.php';
+include_once "../../model/conexion.php";
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 ?>
-<?php include '../template/aheader.php' ?>
-<?php echo sprintf("%s%s",$url,"template/aheader.php")?>
 
 <div class="container mt-5">
     <div class="row justify-content-center">

@@ -2,6 +2,15 @@
 $host = $_SERVER['HTTP_HOST'];
 $url = sprintf("%s%s%s","http://",$host,"/anothersaes/anothersaes/");
 #echo $url; 
+
+?>
+<?php
+session_start();
+$boleta = $_SESSION['usuario'];
+if (!isset($_SESSION['usuario'])) {
+    header("location: ../index.php");
+}
+    
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -25,16 +34,9 @@ $url = sprintf("%s%s%s","http://",$host,"/anothersaes/anothersaes/");
         <div class="row"> <!--fila-->
             <div class="col-md"> <!--columna-->
                 <header>
-                    <?php
-                    session_start();
-                    $boleta = $_SESSION['usuario'];
-                    if (!isset($_SESSION['usuario'])) {
-                        header("location: ../index.php");
-                    }
-                        
-                    ?>
                     <h4 class="text-center">ESCUELA SUPERIOR DE CÓMPUTO, ¡Bienvenido <?php echo $_SESSION['usuario'];?>!</h4>
-                    <?php echo sprintf("%s%s",$url,"src/css/stylesheet.css");?>
+                    <?php #echo sprintf("%s%s",$url,"src/css/stylesheet.css");?>
+                    <?php #echo $boleta;?>
                     <nav class="navbar navbar-expand-lg navbar-light bg-light ">
                         <div class="container-fluid">
                             <a class="navbar-brand" href="aIndex.php">Inicio</a>

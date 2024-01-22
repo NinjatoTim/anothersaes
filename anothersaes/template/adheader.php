@@ -33,14 +33,14 @@ if (!isset($_SESSION['usuario'])) {
         <div class="row"> <!--fila-->
             <div class="col-md"> <!--columna-->
                 <header>
-                    <h4 class="text-center">ESCUELA SUPERIOR DE CÓMPUTO, ¡Bienvenido Docente <?php echo $usuario."!"; ?></h4>
+                    <h4 class="text-center">ESCUELA SUPERIOR DE CÓMPUTO, ¡Bienvenido Administrador <?php echo $usuario."!"; ?></h4>
                     <?php #echo sprintf("%s%s",$url,"src/css/stylesheet.css");
                     ?>
                     <?php #echo $boleta;
                     ?>
                     <nav class="navbar navbar-expand-lg navbar-light bg-light ">
                         <div class="container-fluid">
-                            <a class="navbar-brand" href="<?php echo sprintf("%s%s", $url, "usuarios/Docente/dIndex.php") ?>">Inicio</a>
+                            <a class="navbar-brand" href="<?php echo sprintf("%s%s", $url, "usuarios/Administrador/adIndex.php") ?>">Inicio</a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                             </button>
@@ -51,27 +51,41 @@ if (!isset($_SESSION['usuario'])) {
                                             Perfil
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Docente/dPerfil_read.php") ?>">visualizar</a></li>
-                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Docente/dPerfil_update.php") ?>">editar</a></li>
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Administrador/adPerfil_read.php") ?>">visualizar</a></li>
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Administrador/adPerfil_update.php") ?>">editar</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<?php echo sprintf("%s%s", $url, "usuarios/Administrador/adCursos.php") ?>">Alumnos</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Docentes
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Administrador/adDocente_crud.php") ?>">Lista Docentes</a></li>
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Administrador/adDocente_create.php") ?>">Agregar Docente</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="<?php echo sprintf("%s%s", $url, "usuarios/Administrador/adCursos.php") ?>">Cursos</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Grupos
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Administrador/adGrupos_crud.php") ?>">Ver grupos</a></li>
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Administrador/adGrupo_create.php") ?>">Agregar grupo</a></li>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Alumnos
+                                            Reportes
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Docente/dAlumnos_read.php") ?>">lista de alumnos</a></li>
-                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Docente/dAsignaciónCalifica_ur.php") ?>">Calificar Asignaciones</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Cursos
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Docente/dCursoDisponible_read.php") ?>">Mis cursos</a></li>
-                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Docente/dhorario_read.php") ?>">Mis Horarios</a></li>
-                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Docente/dAsignacion_crud.php") ?>">Asignaciones</a></li>
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Administrador/adPagosAlum_ru.php") ?>">Pagos hechos por alumnos</a></li>
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Administrador/adPagosDocente_read.php") ?>">Pagos a profesores</a></li>
                                         </ul>
                                     </li>
                                     <li class="nav-item">
@@ -80,7 +94,7 @@ if (!isset($_SESSION['usuario'])) {
                                 </ul>
                             </div>
                         </div>
-                    </nav>
+                    </nav>  
                 </header>
             </div>
         </div>

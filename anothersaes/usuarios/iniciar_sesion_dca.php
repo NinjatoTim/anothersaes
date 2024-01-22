@@ -14,15 +14,17 @@ if(!$_POST['l_usuario']  || !$_POST['l_pass']){
 
 $usuario = $_POST['l_usuario'];
 $pass = $_POST['l_pass'];
-$pass = $_POST['l_rol'];
+$rol = $_POST['l_rol'];
 
 
 
 $sentencia = $bd->prepare("SELECT *
 FROM persona
 JOIN docente ON persona.id_persona = docente.id_persona
-WHERE docente.num_empleado = 102
-      AND persona.contrasenia = 'password456';");
+WHERE docente.num_empleado = '$usuario'
+  AND persona.contrasenia = '$pass'
+  AND persona.rol = '$rol';
+");
 
 try {
     // consulta SQL 
@@ -34,7 +36,17 @@ try {
     if ($resultados !== NULL && !empty($resultados)) {
         // Existe esa combinación
         $_SESSION['usuario'] = $usuario;
-        header('Location: Docente/dIndex.php');
+        if($rol == "docente"){
+            header('Location: Docente/dIndex.php');
+        }elseif ($rol == "coordinador") {
+            header('Location: Coordinador/cIndex.php');
+        }elseif ($rol == "administrador") {
+            header('Location: Administrador/adIndex.php');
+        }else{
+            header('Location: ../index.php?mensaje=error');
+        }
+        
+        
     } else {
         // No se encontraron datos
         header('Location: ../index.php?mensaje=error');

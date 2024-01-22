@@ -1,1 +1,0 @@
-<h1> Gestionar cursos</h1>

@@ -56,17 +56,17 @@ try {
         $sentenciaPersona2->bindParam(4, $idPersona, PDO::PARAM_INT);
         $sentenciaPersona2->execute();
 
-        header('Location: dPerfil_update.php?mensaje=editado');
+        header('Location: cPerfil_update.php?mensaje=editado');
     } else {
         echo "aqui hay problema";
-        header('Location: dPerfil_update.php?mensaje=error');
+        header('Location: cPerfil_update.php?mensaje=error');
     }
 } catch (Exception $e) {
     // Si hay algún error, revierte la transacción
     $bd->rollBack();
 
     echo "Error en la actualización: " . $e->getMessage();
-    ('Location: dPerfil_update.php?mensaje=error');
+    ('Location: cPerfil_update.php?mensaje=error');
 }
 
 

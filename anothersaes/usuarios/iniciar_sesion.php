@@ -14,9 +14,6 @@ if(!$_POST['l_usuario']  || !$_POST['l_pass']){
 
 $usuario = $_POST['l_usuario'];
 $pass = $_POST['l_pass'];
-
-
-
 $sentencia = $bd->prepare("SELECT
 *
 FROM
@@ -36,17 +33,21 @@ try {
 
     if ($resultados !== NULL && !empty($resultados)) {
         // Existe esa combinación
-        $_SESSION['usuario'] = $boleta;
+        $_SESSION['usuario'] = $usuario;
+
         header('Location: Alumno/aIndex.php');
     } else {
         // No se encontraron datos
+        echo "ok1";
         header('Location: ../index.php?mensaje=error');
     }
 } catch (PDOException $e) {
     // Capturar y manejar errores de la base de datos
     echo "Error en la consulta: " . $e->getMessage();
     // Puedes redirigir o mostrar un mensaje de error específico según tus necesidades
-     header('Location: ../index.php?mensaje=error');
+    echo "ok2 ";
+    
+    #header('Location: ../index.php?mensaje=error');
 }
 
 

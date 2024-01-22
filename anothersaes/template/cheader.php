@@ -70,8 +70,14 @@ if (!isset($_SESSION['usuario'])) {
                                     <li class="nav-item">
                                         <a class="nav-link" href="<?php echo sprintf("%s%s", $url, "usuarios/Coordinador/cCurso_crud.php") ?>">Cursos</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="<?php echo sprintf("%s%s", $url, "usuarios/Coordinador/cGrupo_crud.php") ?>">Grupos</a>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Grupos
+                                        </a>
+                                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Coordinador/cGrupo_crud.php") ?>">Ver grupos</a></li>
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Coordinador/cGrupo_create.php") ?>">Agregar grupo</a></li>
+                                        </ul>
                                     </li>
                                     <li class="nav-item">
                                         <a class="nav-link" href="<?php echo sprintf("%s%s", $url, "usuarios/cerrar_sesion.php") ?>">Cerrar sesión</a>

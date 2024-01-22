@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 21-01-2024 a las 17:22:58
+-- Tiempo de generación: 22-01-2024 a las 17:54:49
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -76,6 +76,14 @@ CREATE TABLE `asignacion` (
   `url` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `asignacion`
+--
+
+INSERT INTO `asignacion` (`id_asignacion`, `id_grupo`, `titulo`, `descripcion`, `fecha_cierre`, `hora_cierre`, `tipo`, `url`) VALUES
+(1, '2HD4', 'Título de la Asignación', 'Descripción de la Asignación', '2024-01-30', '18:00:00', 'video', 'No aplica'),
+(15, '2HD4', 'xseuwhjcsd', 'dqwQW', '2024-02-02', '07:19:00', 'pdf', 'wq');
+
 -- --------------------------------------------------------
 
 --
@@ -135,7 +143,7 @@ CREATE TABLE `detalle_pago` (
 CREATE TABLE `docente` (
   `num_empleado` int(11) NOT NULL,
   `id_persona` int(11) DEFAULT NULL,
-  `cédula` varchar(10) DEFAULT NULL,
+  `cedula` varchar(10) DEFAULT NULL,
   `especialidad` varchar(100) DEFAULT NULL,
   `grado_academico` varchar(100) DEFAULT NULL,
   `estatus` varchar(100) DEFAULT NULL
@@ -145,9 +153,10 @@ CREATE TABLE `docente` (
 -- Volcado de datos para la tabla `docente`
 --
 
-INSERT INTO `docente` (`num_empleado`, `id_persona`, `cédula`, `especialidad`, `grado_academico`, `estatus`) VALUES
-(101, 11, 'ABC123', 'Matemáticas', 'Maestría', 'Activo'),
-(102, 12, 'XYZ456', 'Historia', 'Doctorado', 'Activo'),
+INSERT INTO `docente` (`num_empleado`, `id_persona`, `cedula`, `especialidad`, `grado_academico`, `estatus`) VALUES
+(0, 29, 'dwesxwe', 'wedcs', 'ewds', 'activo'),
+(101, 11, 'ABC123', 'Matemáticas', 'Maestro en ciencias', 'Activo'),
+(102, 12, 'decswe', 'koñldewoñl,', 'kñl,oñl,lñ', 'Activo'),
 (103, 13, 'DEF789', 'Inglés', 'Licenciatura', 'Activo'),
 (104, 14, 'GHI012', 'Programación', 'Doctorado', 'Activo'),
 (105, 15, 'JKL345', 'Ciencias', 'Licenciatura', 'Activo');
@@ -171,8 +180,9 @@ CREATE TABLE `grupo` (
 --
 
 INSERT INTO `grupo` (`id_grupo`, `num_empleado`, `id_curso`, `cupoMax`, `cupoDisponible`) VALUES
-('2H7D4', 101, 4, 40, 40),
-('2HD4', 103, 3, 40, 40);
+('2H7D4', 103, 4, 40, 40),
+('2HD4', 101, 3, 40, 40),
+('G1', 102, 1, 30, 30);
 
 -- --------------------------------------------------------
 
@@ -187,6 +197,15 @@ CREATE TABLE `horario` (
   `hora_inicio` time DEFAULT NULL,
   `hora_fin` time DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `horario`
+--
+
+INSERT INTO `horario` (`id_horario`, `id_grupo`, `dia_semana`, `hora_inicio`, `hora_fin`) VALUES
+(1, '2HD4', 'Lunes', '08:00:00', '10:00:00'),
+(2, '2HD4', 'Miércoles', '10:30:00', '12:30:00'),
+(3, '2HD4', 'Viernes', '14:00:00', '16:00:00');
 
 -- --------------------------------------------------------
 
@@ -211,17 +230,25 @@ CREATE TABLE `persona` (
 
 INSERT INTO `persona` (`id_persona`, `aPaterno`, `aMaterno`, `nombre`, `genero`, `fecha_na`, `contrasenia`, `rol`) VALUES
 (10, 'keflmdcnkj', 'jkdws', 'jkjdwjkls', 'O', '2000-01-31', 'okldspo', 'alumno'),
-(11, 'Gómez', 'Pérez', 'Juan', 'M', '1980-01-15', 'contraseña123', 'docente'),
-(12, 'Rodríguez', 'López', 'María', 'F', '1985-05-20', 'password456', 'docente'),
+(11, 'Gómez', 'Pérezzzz', 'Juan Manuel', 'M', '1980-01-15', 'contraseña123', 'docente'),
+(12, 'deosl', 'kpoe,frdcop', 'okdk,lskol', 'M', '2022-02-24', '2wsxioajkn34r', 'administrador'),
 (13, 'Martínez', 'García', 'Carlos', 'M', '1975-09-10', 'segura789', 'docente'),
-(14, 'Hernández', 'Vargas', 'Laura', 'F', '1982-11-25', 'clave123', 'docente'),
+(14, 'Hernández', 'Vargas', 'Laura', 'M', '1982-11-25', 'clave123', 'coordinador'),
 (15, 'Sánchez', 'Ramírez', 'Pedro', 'M', '1978-07-08', 'secreto456', 'docente'),
 (16, 'Gomez', 'Perez', 'Carlos', 'M', '1995-03-15', 'clave123', 'alumno'),
 (17, 'Lopez', 'Martinez', 'Ana', 'F', '1998-07-22', 'pass456', 'alumno'),
 (18, 'Rodriguez', 'Fernandez', 'Javier', 'M', '1997-11-08', 'secret789', 'alumno'),
 (19, 'Hernandez', 'Gutierrez', 'Sofia', 'F', '1996-05-30', 'password123', 'alumno'),
 (20, 'Ramirez', 'Gonzalez', 'Diego', 'M', '1999-02-12', 'key789', 'alumno'),
-(21, 'Juan', 'Perez', 'Calabaza', 'M', '1999-11-17', '1234567', 'alumno');
+(21, 'Juan', 'Perez', 'Calabaza', 'M', '1999-11-17', '1234567', 'alumno'),
+(22, 'Fuentes', 'López', 'Eva Melisa', 'F', '2009-06-16', '1234', 'Docente'),
+(23, 'Fuentes', 'López', 'Eva Melisa', 'F', '2009-06-16', '1234', 'Docente'),
+(24, 'Fuentes', 'López', 'Eva Melisa', 'F', '2009-06-16', '1234', 'Docente'),
+(25, 'Fuentes', 'López', 'Eva Melisa', 'F', '2009-06-16', '1234', 'Docente'),
+(26, 'Fuentes', 'López', 'Eva Melisa', 'M', '2024-01-26', 'deswsa', 'Docente'),
+(27, 'Fuentes', 'López', 'Eva Melisa', 'M', '2024-01-26', 'deswsa', 'Docente'),
+(28, 'Fuentes', 'López', 'Eva Melisa', 'M', '2024-01-26', 'deswsa', 'Docente'),
+(29, 'Fuentes', 'López', 'Eva Melisa', 'M', '2024-01-26', 'deswsa', 'Docente');
 
 --
 -- Índices para tablas volcadas
@@ -313,7 +340,7 @@ ALTER TABLE `alumno_grupo`
 -- AUTO_INCREMENT de la tabla `asignacion`
 --
 ALTER TABLE `asignacion`
-  MODIFY `id_asignacion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_asignacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `asignacion_alumno`
@@ -337,13 +364,13 @@ ALTER TABLE `detalle_pago`
 -- AUTO_INCREMENT de la tabla `horario`
 --
 ALTER TABLE `horario`
-  MODIFY `id_horario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_horario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `persona`
 --
 ALTER TABLE `persona`
-  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Restricciones para tablas volcadas

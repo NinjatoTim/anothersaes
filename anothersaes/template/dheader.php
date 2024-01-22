@@ -61,7 +61,7 @@ if (!isset($_SESSION['usuario'])) {
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                             <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Docente/dAlumnos_read.php") ?>">lista de alumnos</a></li>
-                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Docente/dAsignaciónCalifica_UR.php") ?>">Calificar Asignaciones</a></li>
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Docente/dAsignaciónCalifica_ur.php") ?>">Calificar Asignaciones</a></li>
                                         </ul>
                                     </li>
                                     <li class="nav-item dropdown">
@@ -69,7 +69,7 @@ if (!isset($_SESSION['usuario'])) {
                                             Cursos
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Docente/dMisCursos_read.php") ?>">Cursos</a></li>
+                                            <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Docente/dCursoDisponible_read.php") ?>">Mis cursos</a></li>
                                             <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Docente/dhorario_read.php") ?>">Mis Horarios</a></li>
                                             <li><a class="dropdown-item" href="<?php echo sprintf("%s%s", $url, "usuarios/Docente/dAsignacion_crud.php") ?>">Asignaciones</a></li>
                                         </ul>

@@ -18,39 +18,7 @@ curso ON grupo.id_curso = curso.id_curso
 WHERE
 docente.num_empleado = $usuario;");
 $grupos = $sentencia->fetchAll(PDO::FETCH_OBJ);
-#consulta alumnos
-
-function buscarAlumnos($grupo) {
-    include_once "../../model/conexion.php";
-    $usuario = $_SESSION['usuario'];
-    $sentencia = $bd->query("SELECT
-    alumno.boleta,
-    persona.nombre AS nombre_alumno,
-    persona.aPaterno,
-    persona.aMaterno
-  FROM
-    docente
-  JOIN
-    grupo ON docente.num_empleado = grupo.num_empleado
-  JOIN
-    alumno_grupo ON grupo.id_grupo = alumno_grupo.id_grupo
-  JOIN
-    alumno ON alumno_grupo.boleta = alumno.boleta
-  JOIN
-    persona ON alumno.id_persona = persona.id_persona
-  WHERE
-    docente.num_empleado = $usuario
-    AND grupo.id_grupo = '$grupo';");
-    $sujeto = $sentencia->fetchAll(PDO::FETCH_OBJ);    
-    
-    }
-    
-    //Fin de declaración de funciones
-    
-    
-    
-    
-
+   
 ?>
 <div class="container mt-5">
     <div class="row justify-content-center">
